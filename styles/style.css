@@ -1,0 +1,23 @@
+.container-header {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.img-logo {
+    width: 120px;
+
+}
+
+h1 {
+    font-size: 50px;
+    margin-left: 25px;
+    padding-top: 40px;
+}
+
+.card {
+    width: 200px;
+    margin-top: 20px;
+    border-radius: 20px;
+    border-top: orangered;
+}
