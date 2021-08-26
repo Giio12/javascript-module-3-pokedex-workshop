@@ -6,7 +6,6 @@
 
 .img-logo {
     width: 120px;
-
 }
 
 h1 {
@@ -15,9 +14,138 @@ h1 {
     padding-top: 40px;
 }
 
-.card {
-    width: 200px;
+.card-container {
+    width: 230px;
     margin-top: 20px;
-    border-radius: 20px;
-    border-top: orangered;
 }
+.card.fire .card-title{
+    color:rgb(255, 118, 68);;
+    text-align-last: right;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+.card.fire .card-body {
+    border-color: rgb(255, 118, 68);
+    border-style: solid;
+    background-color: rgb(255, 118, 68);
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    justify-content: center;
+}
+.card.fire {
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(255, 118, 68);
+  border-radius: 40px;
+}
+.card.fire p{
+    text-align: center;
+    color: white;
+    font-size:18px ;
+}
+
+.card.electric .card-title{
+    color:rgb(251, 248, 69);
+    text-align-last: right;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+.card.electric .card-body {
+    border-color: rgb(251, 248, 69);
+    border-style: solid;
+    background-color: rgb(251, 248, 69);
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    justify-content: center;
+}
+.card.electric {
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(251, 248, 69);
+  border-radius: 40px;
+}
+.card.electric p{
+    text-align: center;
+    color: white;
+    font-size:18px ;
+}
+
+.card.steel .card-title{
+    color:rgb(174, 154, 219);
+    text-align-last: right;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+.card.steel .card-body {
+    border-color: rgb(174, 154, 219);
+    border-style: solid;
+    background-color: rgb(174, 154, 219);
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    justify-content: center;
+}
+.card.steel {
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(174, 154, 219);
+  border-radius: 40px;
+}
+.card.steel p{
+    text-align: center;
+    color: white;
+    font-size:18px ;
+}
+
+.card.grass .card-title{
+    color:rgb(12, 170, 104);
+    text-align-last: right;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+.card.grass .card-body {
+    border-color: rgb(12, 170, 104);
+    border-style: solid;
+    background-color: rgb(12, 170, 104);
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    justify-content: center;
+}
+.card.grass {
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(12, 170, 104);
+  border-radius: 40px;
+}
+.card.grass p{
+    text-align: center;
+    color: white;
+    font-size:18px ;
+}
+
+.card.water .card-title{
+    color:rgb(7, 151, 156);
+    text-align-last: right;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+.card.water .card-body {
+    border-color: rgb(7, 151, 156);
+    border-style: solid;
+    background-color: rgb(7, 151, 156);
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    justify-content: center;
+}
+.card.water {
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(7, 151, 156);
+  border-radius: 40px;
+}
+.card.water p{
+    text-align: center;
+    color: white;
+    font-size:18px ;
+}
+
+

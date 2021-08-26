@@ -39,23 +39,50 @@ divCol3.appendChild(buttonSearch)
 const divContainerCard = document.createElement('div')
 divContainerCard.className = "card-container"
 divContainer.appendChild(divContainerCard)
-const divAlertContainer= document.createElement('div')
+const divAlertContainer = document.createElement('div')
 divAlertContainer.className = "alert-container"
 divContainer.appendChild(divAlertContainer)
+//*** BOTON PARA MOSTRAR TODOS LOS POKEMONES */
+const divAllPokemons= document.createElement('div')
+divAllPokemons.className="mt-3"
+divContainer.appendChild(divAllPokemons)
+divAllPokemons.innerHTML='<button id= "fetch-all" type= "button" class= "btn btn-primary col-12" > Fetch them all Pokemons</button>'
+//*** UL ******/
+const ulAllPokemons=document.createElement('ul')
+ulAllPokemons.className="list-group"
+divContainer.appendChild(ulAllPokemons)
 
 const renderPokemonCard = res => {
-    const cardElement = document.createElement('div')
-    const cardFragmentHtml = '<div class="card"><img  class="card-img-top" src="" alt=""> <div class="card-body"> <p class="card-text"></p> </div>  </div>'
-    cardElement.innerHTML = cardFragmentHtml;
-    console.log(res)
-    divRow.appendChild(cardElement);
-    document.querySelector('.card-text').innerHTML = res.name;
-
+    const cardFragmentHtml = `<div class="card ${res.types[0].type.name}"> <h5 class="card-title"></h5><img  class="card-img-top" src="" alt=""> <div class="card-body"> <p class="card-text"></p> </div>  </div>`
+    divContainerCard.innerHTML = cardFragmentHtml;
+    document.querySelector('.card-text').innerHTML = capitalizarPrimeraLetra(res.name);
     document.querySelector(".card-img-top").src = res.sprites.front_default;
+    if (res.id < 10) {
+        document.querySelector(".card-title").innerHTML = `#00${res.id}`;
+    } else if (res.id < 100) {
+        document.querySelector(".card-title").innerHTML = `#0${res.id}`;
+    } else {
+        document.querySelector(".card-title").innerHTML = `#${res.id}`;
+    }
 }
+    
+
+function capitalizarPrimeraLetra(nameUpperCase) {
+  return nameUpperCase.charAt(0).toUpperCase() + nameUpperCase.slice(1);
+}
+
 
 const clearContent = () => {
     document.querySelector(".card-container").innerHTML = "";
+    document.querySelector(".alert-container").innerHTML = "";
+}
+const renderAlert = (alertText) => {
+    const alertElement = document.createElement('div')
+    const alertFragmentHtml = '<div class="alert alert-danger" role="alert"></div>'
+    alertElement.innerHTML = alertFragmentHtml
+    divAlertContainer.appendChild(alertElement)
+    document.querySelector(".alert").innerHTML = alertText
+
 }
 
 const getSinglePokemon = async search => {
@@ -68,14 +95,41 @@ const getSinglePokemon = async search => {
         renderPokemonCard(parsedRes);
     } catch (error) {
         console.log(error)
-        // renderAlert(`something went wrong with your serch: ${search}`)
+        clearContent();
+        renderAlert(`something went wrong with your serch: ${search}`)
+    }
+}
+const renderAllPokemons=(res)=>{
+    res.results.forEach((pokemon, i) => {
+        let liAllPokemons=document.createElement('li');
+        liAllPokemons.classList.add(`pokemon-${i+1}`, "list-group-item")
+        document.querySelector(".list-group").appendChild(liAllPokemons)
+        liAllPokemons.innerHTML=(`<button class="btn btn-link"> ${pokemon.name}</button>`)
+    });
+}
+
+const renderPagination = (count) => {
+
+}
+
+const getAllPokemons = async (page) => {
+    try {
+        const url = "https://pokeapi.co/api/v2/pokemon/"
+        const response = await fetch(url);
+        const parsedRes = await response.json();
+        clearContent();
+        renderAllPokemons(parsedRes);
+        renderPagination(parsedRes.count)
+    } catch (error){
+        console.log(error)
+        clearContent();
+        renderAlert("Something went wrong")
     }
 }
 window.onload = () => {
-    document.querySelector('#search-button').addEventListener("click",
-
-        () => {
-            const formControl = document.querySelector('.form-control').value;
-            getSinglePokemon(formControl);
-        })
+    document.getElementById('search-button').addEventListener("click", () => {
+        const formControl = document.querySelector('.form-control').value;
+        formControl && getSinglePokemon(formControl);
+    })
+    document.getElementById('fetch-all').addEventListener("click", getAllPokemons)
 }
